@@ -1,733 +1,294 @@
-# Product Metrics Frameworks
+# 产品指标框架指南
 
-A comprehensive guide to choosing and implementing product metrics frameworks for measuring success.
-
----
-
-## Table of Contents
-
-1. [Overview](#overview)
-2. [AARRR (Pirate Metrics)](#aarrr-pirate-metrics)
-3. [HEART Framework](#heart-framework)
-4. [North Star Metric](#north-star-metric)
-5. [OKRs (Objectives & Key Results)](#okrs-objectives--key-results)
-6. [Product-Market Fit Metrics](#product-market-fit-metrics)
-7. [Engagement Metrics](#engagement-metrics)
-8. [Choosing the Right Framework](#choosing-the-right-framework)
+一份关于如何选择与落地产品指标框架的综合指南，用于衡量成功与对齐团队。
 
 ---
 
-## Overview
+## 目录
 
-### Why Metrics Matter
-
-**Metrics help you:**
-- Measure feature success objectively
-- Make data-driven decisions
-- Align teams around shared goals
-- Identify what's working and what's not
-- Communicate impact to stakeholders
-
-### Types of Metrics
-
-**Leading Indicators:** Predict future outcomes
-- Example: Free trial sign-ups → Future revenue
-
-**Lagging Indicators:** Measure past results
-- Example: Monthly revenue, churn rate
-
-**Actionable vs. Vanity Metrics**
-- **Actionable:** Can influence through product changes (e.g., conversion rate)
-- **Vanity:** Looks good but doesn't drive decisions (e.g., total registered users)
+1. [概述](#概述)  
+2. [AARRR（海盗指标）](#aarrr海盗指标)  
+3. [HEART 框架](#heart-框架)  
+4. [北极星指标](#北极星指标)  
+5. [OKR（Objectives & Key Results）](#okr-objectives--key-results)  
+6. [产品市场契合度指标](#产品市场契合度指标)  
+7. [参与度指标](#参与度指标)  
+8. [如何选择合适的框架](#如何选择合适的框架)  
 
 ---
 
-## AARRR (Pirate Metrics)
+## 概述
 
-Created by Dave McClure, this framework focuses on the customer lifecycle.
+### 为什么指标重要
 
-### The Five Stages
+指标帮助你：
+- 客观衡量功能/产品的成功
+- 做出数据驱动决策
+- 围绕共同目标对齐团队
+- 找出有效与无效的部分
+- 向利益相关方传递影响
+
+### 指标类型
+
+**先行指标（Leading）**：可预测未来结果  
+- 例：免费试用注册数 → 未来收入
+
+**滞后指标（Lagging）**：衡量已发生的结果  
+- 例：月收入、流失率
+
+**可行动 vs. 虚荣指标**  
+- 可行动：可通过产品改进影响（如转化率）  
+- 虚荣：看起来好但难以指导决策（如累计注册用户）
+
+---
+
+## AARRR（海盗指标）
+
+由 Dave McClure 提出，关注用户生命周期五个阶段：
 
 ```
 Acquisition → Activation → Retention → Revenue → Referral
 ```
 
-### 1. Acquisition
+### 1. Acquisition（获取）
+**看什么**：用户如何找到你  
+**常用指标**：站点流量、应用商店曝光、广告点击率、获客成本、流量来源  
+**例目标**：月访客 10,000；CAC < $50；广告 CTR 5%  
+**关键问题**：哪个渠道贡献最大？成本结构怎样？哪类投放转化最好？
 
-**What:** How do users find you?
+### 2. Activation（激活）
+**看什么**：首次体验是否达到“啊哈时刻”  
+**常用指标**：注册完成率、达到关键里程碑比例、首会话功能使用率、入门流程完成率  
+**例目标**：注册完成 60%；40% 用户首会话达“啊哈”；入门完成 80%  
 
-**Key Metrics:**
-- Website traffic
-- App store impressions
-- Click-through rate (CTR) from ads
-- Cost per acquisition (CPA)
-- Traffic sources (organic, paid, referral)
+### 3. Retention（留存）
+**看什么**：用户是否回来  
+**常用指标**：DAU/WAU/MAU、留存曲线（D1/D7/D30）、流失率、会话频次、功能使用趋势  
+**例目标**：D7 留存 40%；D30 留存 25%；月流失 < 5%  
+**分析方式**：分 cohort 留存表，找流失时间点与原因。
 
-**Example Targets:**
-- 10,000 monthly website visitors
-- CAC < $50
-- 5% CTR on paid ads
+### 4. Revenue（收入）
+**看什么**：如何变现  
+**常用指标**：MRR、ARPU、LTV、转付费率、升降级/交叉销售率  
+**公式示例**：  
+```
+LTV = ARPU × 客户生命周期
+LTV:CAC = LTV ÷ CAC
+流失率 = 流失客户数 ÷ 总客户数 × 100
+```
 
-**Questions to Answer:**
-- Which channels drive the most users?
-- What's our cost per channel?
-- Which campaigns convert best?
+### 5. Referral（推荐）
+**看什么**：用户是否自传播  
+**常用指标**：病毒系数（K-factor）、NPS、推荐率、分享次数、口碑归因  
+**公式示例**：  
+```
+K-factor = (人均邀请数) × (邀请转化率)
+NPS = %Promoters - %Detractors
+```
+
+**AARRR 示例（SaaS）**
+
+| 阶段 | 指标 | 当前 | 目标 | 动作 |
+|------|------|------|------|------|
+| 获取 | 月访客 | 50,000 | 75,000 | SEO/内容 |
+| 激活 | 试用注册率 | 5% | 8% | 改版落地页 |
+| 留存 | D30 留存 | 20% | 30% | 优化入门 | 
+| 收入 | 付费转化 | 3% | 5% | 调整定价页 |
+| 推荐 | 推荐用户占比 | 8% | 15% | 推推荐计划 |
 
 ---
 
-### 2. Activation
+## HEART 框架
 
-**What:** Do users have a great first experience?
+Google 提出，关注用户体验质量：Happiness, Engagement, Adoption, Retention, Task Success。
 
-**Key Metrics:**
-- Sign-up completion rate
-- Time to "aha moment"
-- Percentage reaching key milestone
-- Onboarding completion rate
-- Feature adoption in first session
+### Happiness（满意）
+指标：NPS、CSAT、评分、情感/工单反馈  
+测量：问卷、应用商店评分、内嵌反馈、社媒舆情
 
-**Example Targets:**
-- 60% sign-up completion
-- 40% reach "aha moment" in first session
-- 80% complete onboarding
+### Engagement（参与）
+指标：会话时长、页面/屏数、功能使用频次、动作数  
 
-**Questions to Answer:**
-- What does a great first experience look like?
-- Where do users drop off in onboarding?
-- How quickly do users find value?
+### Adoption（采用）
+指标：新用户注册、功能采用率、首次使用时间、启用比例  
 
-**Example "Aha Moments":**
-- **Slack:** Send your first message
-- **Dropbox:** Upload your first file
-- **Airbnb:** Complete your first booking
+### Retention（留存）
+指标：DAU/WAU/MAU、留存曲线、流失率、重复使用率  
 
----
+### Task Success（任务完成）
+指标：完成率、错误率、完成时间、搜索成功率  
 
-### 3. Retention
+**HEART 模板**
 
-**What:** Do users come back?
-
-**Key Metrics:**
-- Daily/Weekly/Monthly Active Users (DAU/WAU/MAU)
-- Retention curves (Day 1, Day 7, Day 30)
-- Churn rate
-- Session frequency
-- Feature usage over time
-
-**Example Targets:**
-- 40% Day 7 retention
-- 25% Day 30 retention
-- < 5% monthly churn
-
-**Cohort Analysis:**
-```
-| Cohort    | Week 1 | Week 2 | Week 3 | Week 4 |
-|-----------|--------|--------|--------|--------|
-| Jan 2024  | 100%   | 45%    | 30%    | 25%    |
-| Feb 2024  | 100%   | 50%    | 35%    | 28%    |
-```
-
-**Questions to Answer:**
-- What makes users come back?
-- When do users churn?
-- How can we re-engage inactive users?
+| 维度 | 目标 | 信号 | 指标 |
+|------|------|------|------|
+| Happiness | 用户喜爱 | 正向反馈 | NPS > 40 |
+| Engagement | 频繁互动 | 日活/使用频次 | DAU/MAU 60% |
+| Adoption | 多数尝试 | 功能启用率 | 70% 采用 |
+| Retention | 持续回来 | 周回访率 | W1 留存 50% |
+| Task Success | 任务完成 | 低错误 | 成功率 95% |
 
 ---
 
-### 4. Revenue
+## 北极星指标
 
-**What:** How do you monetize?
+定义最能代表向用户交付核心价值的单一指标。
 
-**Key Metrics:**
-- Monthly Recurring Revenue (MRR)
-- Average Revenue Per User (ARPU)
-- Customer Lifetime Value (LTV)
-- Conversion to paid rate
-- Upsell/cross-sell rate
+特征：反映价值、可度量进展、团队可影响、收入先行指标、易理解。  
 
-**Example Targets:**
-- 5% free-to-paid conversion
-- $50 ARPU
-- LTV:CAC ratio > 3:1
+示例：Airbnb=预订晚数；Spotify=收听时长；Slack=消息数；Netflix=观看时长；Uber=完成行程。
 
-**Formulas:**
+**寻找步骤**：定义价值 → 选指标 → 验证（相关性/可控性/可理解）→ 设目标并跟踪。  
+
+**北极星指标树示例**
 ```
-LTV = ARPU × Average Customer Lifespan
-LTV:CAC = Lifetime Value ÷ Customer Acquisition Cost
-Churn Rate = Customers Lost ÷ Total Customers × 100
-```
-
-**Questions to Answer:**
-- Which features drive conversions?
-- What's our payback period?
-- How can we increase ARPU?
-
----
-
-### 5. Referral
-
-**What:** Do users tell others?
-
-**Key Metrics:**
-- Viral coefficient (K-factor)
-- Net Promoter Score (NPS)
-- Referral rate
-- Social shares
-- Word-of-mouth attribution
-
-**Example Targets:**
-- 15% of users refer others
-- NPS > 50
-- K-factor > 1 (viral growth)
-
-**Formulas:**
-```
-K-factor = (Number of Invites per User) × (Conversion Rate of Invites)
-NPS = % Promoters - % Detractors
-```
-
-**Questions to Answer:**
-- Why do users refer others?
-- How can we incentivize referrals?
-- What makes us shareable?
-
----
-
-### AARRR Example: SaaS Product
-
-| Stage | Metric | Current | Target | Actions |
-|-------|--------|---------|--------|---------|
-| Acquisition | Monthly visitors | 50,000 | 75,000 | SEO, content marketing |
-| Activation | Trial sign-ups | 5% | 8% | Improve landing page |
-| Retention | Day 30 retention | 20% | 30% | Onboarding improvements |
-| Revenue | Free-to-paid conversion | 3% | 5% | Pricing page redesign |
-| Referral | Users who refer | 8% | 15% | Referral program launch |
-
----
-
-## HEART Framework
-
-Created by Google, focuses on user experience quality.
-
-### The Five Dimensions
-
-**HEART = Happiness + Engagement + Adoption + Retention + Task Success**
-
----
-
-### 1. Happiness
-
-**What:** User satisfaction and perception
-
-**Metrics:**
-- Net Promoter Score (NPS)
-- Customer Satisfaction (CSAT)
-- User ratings/reviews
-- Support ticket sentiment
-- User feedback scores
-
-**Measurement Methods:**
-- Surveys (post-interaction, periodic)
-- App store ratings
-- In-app feedback forms
-- Social media sentiment
-
-**Example:**
-```
-Feature: New checkout flow
-Happiness Metric: CSAT score
-Target: > 4.5/5 average rating
-Measurement: Post-purchase survey
+北极星：周活跃用户
+    ├── 新增：注册、入门完成
+    ├── 激活：达到“啊哈”
+    └── 留存：W1/W4 留存
 ```
 
 ---
 
-### 2. Engagement
+## OKR（Objectives & Key Results）
 
-**What:** Level of user involvement
+目标设定框架：Objective 定性鼓舞；Key Results 定量可衡量，通常 3-5 条。
 
-**Metrics:**
-- Session duration
-- Pages/screens per session
-- Feature usage frequency
-- Time spent in app
-- Actions per session
+好 KR 的特征：具体、可衡量、有目标值、可实现但有挑战。  
 
-**Example:**
-```
-Feature: News feed
-Engagement Metric: Daily sessions per user
-Current: 1.2 sessions/day
-Target: 2.0 sessions/day
-```
+示例（成长）：  
+- 目标：成为小企业发票首选平台  
+- KR：月活企业 1万→2.5万；留存 40%；NPS 50+；MRR 50万。
 
----
-
-### 3. Adoption
-
-**What:** New users or feature uptake
-
-**Metrics:**
-- New user sign-ups
-- Feature adoption rate
-- Time to first use
-- Percentage of users trying new feature
-
-**Example:**
-```
-Feature: Dark mode
-Adoption Metric: % of users enabling dark mode
-Target: 40% within 30 days of launch
-```
-
----
-
-### 4. Retention
-
-**What:** Users returning over time
-
-**Metrics:**
-- DAU/WAU/MAU
-- Retention curves
-- Churn rate
-- Repeat usage rate
-
-**Example:**
-```
-Feature: Collaboration tools
-Retention Metric: Week-over-week active teams
-Target: 70% of teams active weekly
-```
-
----
-
-### 5. Task Success
-
-**What:** Can users accomplish their goals?
-
-**Metrics:**
-- Task completion rate
-- Error rate
-- Time to complete task
-- Search success rate
-
-**Example:**
-```
-Feature: File upload
-Task Success Metric: Upload completion rate
-Current: 85%
-Target: 95%
-Error analysis: Large file timeouts
-```
-
----
-
-### HEART Framework Template
-
-| Dimension | Goals | Signals | Metrics |
-|-----------|-------|---------|---------|
-| **Happiness** | Users love the feature | Positive feedback | NPS > 40 |
-| **Engagement** | Users interact frequently | Daily active usage | 60% DAU/MAU |
-| **Adoption** | Most users try it | Feature activation | 70% adoption |
-| **Retention** | Users keep coming back | Weekly return rate | 50% W1 retention |
-| **Task Success** | Users complete goals | Low error rate | 95% success rate |
-
----
-
-## North Star Metric
-
-A single metric that best captures the core value you deliver to customers.
-
-### Characteristics of a Good North Star Metric
-
-1. **Reflects value delivery** to customers
-2. **Measures progress** toward your vision
-3. **Actionable** by the team
-4. **Leading indicator** of revenue
-5. **Understandable** by everyone
-
----
-
-### Examples by Company
-
-| Company | North Star Metric | Why |
-|---------|------------------|-----|
-| **Airbnb** | Nights booked | Core value: successful stays |
-| **Spotify** | Time spent listening | Core value: music enjoyment |
-| **Slack** | Messages sent by teams | Core value: communication |
-| **Facebook** | Daily Active Users | Core value: social connection |
-| **Netflix** | Hours watched | Core value: entertainment |
-| **Uber** | Rides completed | Core value: transportation |
-| **Medium** | Total time reading | Core value: quality content |
-
----
-
-### Finding Your North Star Metric
-
-**Step 1: Define your value proposition**
-- What core value do you deliver?
-- What's the "aha moment" for users?
-
-**Step 2: Identify the metric**
-- What measurement best captures that value?
-- Is it a leading indicator of business success?
-
-**Step 3: Validate the metric**
-- Does it correlate with revenue?
-- Can teams influence it?
-- Is it understandable?
-
-**Step 4: Set targets and track**
-- What's the current baseline?
-- What's the target growth rate?
-- How will you measure progress?
-
----
-
-### North Star Metric Tree
-
-Break down your North Star into contributing metrics:
-
-```
-North Star: Weekly Active Users
-    ├── New User Acquisition
-    │   ├── Sign-ups
-    │   └── Onboarding completion
-    ├── Activation
-    │   └── Users reaching "aha moment"
-    └── Retention
-        ├── Week 1 retention
-        └── Week 4 retention
-```
-
----
-
-## OKRs (Objectives & Key Results)
-
-Goal-setting framework popularized by Google.
-
-### Structure
-
-**Objective:** Qualitative, inspirational goal
-**Key Results:** Quantitative, measurable outcomes (3-5 per objective)
-
----
-
-### Writing Good OKRs
-
-**Objective Characteristics:**
-- Inspirational and motivating
-- Qualitative
-- Time-bound (quarterly or annual)
-- Aligned with company strategy
-
-**Key Result Characteristics:**
-- Quantitative and measurable
-- Specific with clear targets
-- Ambitious but achievable
-- 3-5 per objective
-
----
-
-### Examples
-
-#### Example 1: Growth OKR
-
-**Objective:** Become the go-to platform for small business invoicing
-
-**Key Results:**
-1. Increase monthly active businesses from 10,000 to 25,000
-2. Achieve 40% month-over-month retention
-3. Reach NPS of 50+
-4. Generate $500K MRR
-
----
-
-#### Example 2: Product Quality OKR
-
-**Objective:** Deliver a world-class mobile experience
-
-**Key Results:**
-1. Reduce app crash rate from 2.5% to <0.5%
-2. Achieve 4.5+ star rating on both app stores
-3. Improve app load time to <2 seconds (p95)
-4. Increase mobile DAU/MAU ratio from 30% to 45%
-
----
-
-#### Example 3: Feature Launch OKR
-
-**Objective:** Successfully launch team collaboration features
-
-**Key Results:**
-1. 60% of active users try collaboration features within 30 days
-2. 25% of users become weekly active collaborators
-3. Collaboration features drive 15% increase in paid conversions
-4. Achieve CSAT score of 4.2/5 for collaboration features
-
----
-
-### OKR Template for PRDs
-
+**PRD 中的 OKR 模板**
 ```markdown
 ## OKRs
 
-### Objective: [Inspirational goal]
+### Objective: [鼓舞性目标]
+Key Results:
+1. [指标1]：从[X]到[Y]，截止[日期]
+2. [指标2]：达成[目标值]
+3. [指标3]：其他量化结果
 
-**Key Results:**
-1. [Metric 1]: Increase/decrease [current] to [target] by [date]
-2. [Metric 2]: Achieve [target value] for [metric]
-3. [Metric 3]: [Specific measurable outcome]
-
-**Tracking:**
-- Current status: [Progress report]
-- Dashboard: [Link to metrics dashboard]
-- Review cadence: [Weekly/bi-weekly]
+Tracking：状态/看板/复盘频率
 ```
 
 ---
 
-## Product-Market Fit Metrics
+## 产品市场契合度指标（PMF）
 
-Measuring whether you've achieved product-market fit.
+### Sean Ellis 测试
+问卷：“如果无法再用本产品，你会如何？”  
+- 非常失望 / 有点失望 / 不失望  
+- PMF 阈值：40%+ 选“非常失望”
 
-### Sean Ellis Test
+### 其他 PMF 信号
 
-Survey question: **"How would you feel if you could no longer use [product]?"**
-
-- Very disappointed
-- Somewhat disappointed
-- Not disappointed
-
-**PMF Threshold:** 40%+ answer "Very disappointed"
+**定性**：自发推荐、自然增长、使用粘性高、正向反馈多、创造性用法。  
+**定量**：月留存 40%+；NPS>50；自然增长 10%+/月；DAU/MAU>40%；LTV:CAC>3。
 
 ---
 
-### Other PMF Indicators
+## 参与度指标
 
-**Qualitative Signals:**
-- Users voluntarily refer others
-- Organic growth without marketing
-- High engagement and retention
-- Users find creative use cases
-- Positive unsolicited feedback
+### DAU/WAU/MAU 与粘性
+- DAU/MAU：>50% 极佳；20-50% 良好；10-20% 中等
+- DAU/WAU：反映周内日均活跃
 
-**Quantitative Metrics:**
-- **Retention:** 40%+ month 1 retention
-- **NPS:** Score > 50
-- **Growth:** 10%+ month-over-month organic growth
-- **Engagement:** High DAU/MAU ratio (>40%)
-- **LTV:CAC:** Ratio > 3:1
+### 会话指标
+会话时长、频次、深度（动作/页数）  
+例目标：时长>5分钟；频次≥2次/天；深度>8页。
+
+### 功能参与
+采用率、活跃使用率、使用深度。  
+例：协作功能——50% 试用，30% 周活跃，均值 12 次协作/周。
 
 ---
 
-## Engagement Metrics
+## 如何选择合适的框架
 
-Deep dive into measuring user engagement.
+### 选择矩阵
 
-### DAU/WAU/MAU
+| 框架 | 最佳场景 | 时间维度 | 复杂度 |
+|------|---------|---------|-------|
+| AARRR | 增长漏斗/早期产品 | 持续 | 中 |
+| HEART | 体验质量/功能上线 | 按功能 | 低-中 |
+| 北极星 | 公司/团队对齐 | 持续 | 低 |
+| OKR | 目标管理 | 季度/年度 | 中-高 |
 
-**Definitions:**
-- **DAU:** Daily Active Users (unique users in a day)
-- **WAU:** Weekly Active Users (unique users in a week)
-- **MAU:** Monthly Active Users (unique users in a month)
+### 按产品阶段
+- 早期（未 PMF）：聚焦 PMF + AARRR 中激活/留存；北极星用早期参与指标
+- 成长期：完整 AARRR 漏斗，北极星偏增长
+- 成熟期：HEART 做功能优化，OKR 做目标对齐，北极星偏收入/深度
 
-**Ratios:**
-- **DAU/MAU:** Stickiness (how many monthly users come daily)
-- **DAU/WAU:** Daily engagement intensity
-
-**Benchmarks:**
-- **Excellent:** DAU/MAU > 50% (e.g., messaging apps)
-- **Good:** DAU/MAU = 20-50% (e.g., social media)
-- **Average:** DAU/MAU = 10-20% (e.g., utilities)
-
----
-
-### Session Metrics
-
-**Key Measurements:**
-- **Session duration:** Time spent per session
-- **Session frequency:** Sessions per user per day/week
-- **Session depth:** Actions/pages per session
-
-**Example Targets:**
-- Session duration: > 5 minutes
-- Session frequency: 2+ sessions/day
-- Session depth: > 8 page views
+### 按产品类型
+- 消费类：AARRR，DAU/MAU，病毒系数
+- B2B SaaS：ARR/MRR，流失率，扩张收入
+- 市场类：GMV、抽佣率、供需流动性
+- 内容平台：停留时长、内容生产/消费率
 
 ---
 
-### Feature Engagement
+## 指标反模式
 
-**Metrics:**
-- **Adoption rate:** % of users who try the feature
-- **Active usage:** % of users actively using regularly
-- **Depth of use:** Actions per user within feature
-
-**Example:**
-```
-Feature: Document collaboration
-- Adoption: 50% of users have collaborated at least once
-- Active usage: 30% collaborate weekly
-- Depth: Average 12 collaborative edits per week
-```
+1. **太多指标**：聚焦每个项目 3-5 个关键指标  
+2. **虚荣指标**：关注可行动指标（活跃、转化、留存）  
+3. **只看滞后指标**：平衡先行（激活/参与）与滞后（收入/流失）  
+4. **无目标值**：设置具体、时限的目标  
+5. **不做分层**：按用户类型、渠道、功能做分段分析
 
 ---
 
-## Choosing the Right Framework
-
-### Decision Matrix
-
-| Framework | Best For | Time Horizon | Complexity |
-|-----------|----------|--------------|------------|
-| **AARRR** | Growth-focused products, startups | Ongoing | Medium |
-| **HEART** | UX quality, feature launches | Per feature | Low-Medium |
-| **North Star** | Company alignment, focus | Ongoing | Low |
-| **OKRs** | Goal setting, team alignment | Quarterly | Medium-High |
-
----
-
-### By Product Stage
-
-**Early Stage (Pre-PMF):**
-- Focus: Product-Market Fit metrics
-- Framework: AARRR (Activation & Retention focus)
-- North Star: Early engagement metric
-
-**Growth Stage (Post-PMF):**
-- Focus: Scaling user acquisition
-- Framework: Full AARRR funnel
-- North Star: Growth-oriented metric
-
-**Mature Stage:**
-- Focus: Optimization and expansion
-- Framework: HEART for features, OKRs for goals
-- North Star: Revenue or engagement metric
-
----
-
-### By Product Type
-
-**Consumer Apps:**
-- AARRR for growth funnel
-- DAU/MAU for engagement
-- Viral coefficient for referral
-
-**B2B SaaS:**
-- ARR/MRR for revenue
-- Churn rate for retention
-- Expansion revenue for growth
-
-**Marketplace:**
-- GMV (Gross Merchandise Value)
-- Take rate (% of transaction)
-- Liquidity (supply/demand balance)
-
-**Content Platforms:**
-- Time spent on platform
-- Content creation rate
-- Content consumption rate
-
----
-
-## Metrics Anti-Patterns
-
-### Common Mistakes
-
-**1. Too Many Metrics**
-- **Problem:** Tracking everything = focusing on nothing
-- **Solution:** Choose 3-5 key metrics per initiative
-
-**2. Vanity Metrics**
-- **Problem:** Total users looks good but doesn't inform decisions
-- **Solution:** Focus on active users, engagement, retention
-
-**3. Lagging Only**
-- **Problem:** Only tracking revenue = rear-view mirror
-- **Solution:** Balance with leading indicators (activation, engagement)
-
-**4. No Targets**
-- **Problem:** Tracking without goals
-- **Solution:** Set specific, time-bound targets
-
-**5. Not Segmenting**
-- **Problem:** Average metrics hide important patterns
-- **Solution:** Segment by user type, cohort, feature usage
-
----
-
-## Metrics Template for PRDs
+## PRD 成功指标模板
 
 ```markdown
-## Success Metrics
+## 成功指标
 
-### North Star Metric
-**Metric:** [Your single most important metric]
-**Current:** [Baseline value]
-**Target:** [Goal value by launch + X months]
-**Why:** [Why this metric matters]
+### 北极星指标
+- 指标：[…]
+- 当前：[…]
+- 目标：[…，截止时间]
+- 原因：为什么选择它
 
-### Supporting Metrics
+### 支撑指标
+#### 获取
+- 指标1：当前[X]，目标[Y]
+- 指标2：当前[X]，目标[Y]
 
-#### Acquisition
-- **Metric 1:** [Name] - Current: [X], Target: [Y]
-- **Metric 2:** [Name] - Current: [X], Target: [Y]
+#### 激活
+- …
 
-#### Activation
-- **Metric 1:** [Name] - Current: [X], Target: [Y]
-- **Metric 2:** [Name] - Current: [X], Target: [Y]
+#### 留存
+- …
 
-#### Retention
-- **Metric 1:** [Name] - Current: [X], Target: [Y]
-- **Metric 2:** [Name] - Current: [X], Target: [Y]
+#### 收入（如适用）
+- …
 
-#### Revenue (if applicable)
-- **Metric 1:** [Name] - Current: [X], Target: [Y]
+### 反向指标（避免副作用）
+- 例：客服工单不增加超过10%
 
-### Counter-Metrics
-[Metrics to ensure you're not sacrificing other areas]
-- Example: Ensure support tickets don't increase > 10%
-
-### Measurement Plan
-- **Dashboard:** [Link]
-- **Review Cadence:** [Weekly/bi-weekly]
-- **Owner:** [Name]
+### 测量计划
+- 看板/工具：[链接]
+- 复盘频率：[周/双周]
+- 负责人：[Name]
 ```
 
 ---
 
-## Resources & Tools
+## 工具资源速查
 
-### Analytics Platforms
-- **Amplitude:** Product analytics, retention analysis
-- **Mixpanel:** Event tracking, funnel analysis
-- **Google Analytics:** Web analytics
-- **Heap:** Auto-capture analytics
-
-### Survey Tools
-- **Delighted:** NPS surveys
-- **SurveyMonkey:** Custom surveys
-- **Typeform:** Engaging survey forms
-
-### Dashboard Tools
-- **Tableau:** Data visualization
-- **Looker:** Business intelligence
-- **Datadog:** Infrastructure metrics
-- **Metabase:** Open-source BI
+**分析**：Amplitude、Mixpanel、GA、Heap  
+**调研**：Delighted、SurveyMonkey、Typeform  
+**看板**：Tableau、Looker、Datadog、Metabase
 
 ---
 
-## Summary
+## 要点速记
 
-**Key Takeaways:**
-
-1. **Choose frameworks** that match your product stage and goals
-2. **Balance leading and lagging** indicators
-3. **Set specific targets** with timelines
-4. **Track counter-metrics** to avoid unintended consequences
-5. **Review regularly** and iterate on what you measure
-6. **Keep it simple** - 3-5 key metrics per initiative
-7. **Align metrics** with business objectives
-8. **Make metrics actionable** - can the team influence them?
-
-**Remember:** The best metric is one that drives the right behavior and aligns your team around what matters most to users and the business.
+1. 选与阶段/目标匹配的框架  
+2. 平衡先行与滞后指标  
+3. 设定具体目标与时限  
+4. 配置反向指标避免副作用  
+5. 定期复盘迭代  
+6. 保持简单：每项 3-5 个关键指标  
+7. 与业务目标对齐，确保可行动、团队可影响。

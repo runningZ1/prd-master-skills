@@ -1,667 +1,262 @@
-# User Story Examples & Best Practices
+# 用户故事示例与最佳实践
 
-A comprehensive guide to writing effective user stories with real-world examples across different domains.
-
----
-
-## Table of Contents
-
-1. [User Story Format](#user-story-format)
-2. [Anatomy of Good User Stories](#anatomy-of-good-user-stories)
-3. [Examples by Domain](#examples-by-domain)
-4. [Acceptance Criteria Patterns](#acceptance-criteria-patterns)
-5. [Common Mistakes](#common-mistakes)
-6. [Story Splitting](#story-splitting)
+一份涵盖格式、优质故事特征、跨场景示例、验收标准模式、常见误区与拆分技巧的指南。
 
 ---
 
-## User Story Format
+## 目录
 
-### Standard Template
+1. [用户故事格式](#用户故事格式)  
+2. [好故事的构成](#好故事的构成)  
+3. [按领域的示例](#按领域的示例)  
+4. [验收标准模式](#验收标准模式)  
+5. [常见错误](#常见错误)  
+6. [故事拆分方法](#故事拆分方法)  
 
+---
+
+## 用户故事格式
+
+### 标准模板
 ```
-As a [user type/persona],
-I want to [perform action/use feature],
-So that [achieve benefit/value].
+作为一名 [用户类型]，
+我希望 [执行动作/使用功能]，
+从而 [获得收益/价值]。
 ```
 
-### Alternative Formats
-
-**Job Story (Jobs-to-be-Done):**
+### 可选写法
+**Job Story（JTBD）**
 ```
-When [situation],
-I want to [motivation],
-So I can [expected outcome].
+当 [情境]，
+我想要 [动机]，
+从而可以 [预期结果]。
 ```
-
-**Feature-Driven:**
+**Feature-Driven**
 ```
-In order to [receive benefit],
-As a [user type],
-I want [feature/capability].
+为了 [获得某个收益]，
+作为 [用户类型]，
+我想 [某功能/能力]。
 ```
 
 ---
 
-## Anatomy of Good User Stories
+## 好故事的构成
 
-### INVEST Criteria
+### INVEST 原则
+- Independent 独立可交付
+- Negotiable 可协商细化
+- Valuable 有明确价值
+- Estimable 可估算
+- Small 足够小（一迭代可完成）
+- Testable 可验证（有标准）
 
-Good user stories are:
-
-- **Independent:** Can be developed and delivered separately
-- **Negotiable:** Details can be discussed and adjusted
-- **Valuable:** Delivers clear value to users or business
-- **Estimable:** Can be sized/estimated by the team
-- **Small:** Can be completed in one iteration/sprint
-- **Testable:** Has clear acceptance criteria
-
-### Key Components
-
-1. **User Type:** Who is the user? Be specific.
-2. **Action:** What do they want to do? One clear action.
-3. **Value:** Why do they want it? The benefit or outcome.
-4. **Acceptance Criteria:** How do we know it's done? Testable conditions.
+### 关键要素
+1) 用户类型：具体角色  
+2) 行动：单一明确  
+3) 价值：为什么要做  
+4) 验收标准：何为完成
 
 ---
 
-## Examples by Domain
+## 按领域的示例
 
-### E-Commerce
-
-#### Example 1: Product Search
-
-**User Story:**
+### 电商
+**产品筛选**
 ```
-As a online shopper,
-I want to filter products by price range,
-So that I can find items within my budget.
+作为一名网购用户，
+我希望按价格区间筛选商品，
+从而能找到预算内的选项。
 ```
+验收标准示例：
+- 价格范围生效，列表仅展示区间内商品  
+- 清除筛选后恢复全量  
+- 输入无效区间时提示错误  
+- 翻页后筛选仍生效  
+- 显示符合条件的商品数量
 
-**Acceptance Criteria:**
-- [ ] Given I'm on the product listing page, when I set a minimum and maximum price, then only products within that range are displayed
-- [ ] Given I've applied a price filter, when I clear the filter, then all products are shown again
-- [ ] Given I set an invalid price range (min > max), when I apply the filter, then I see an error message
-- [ ] Price filter persists when I navigate between pages of results
-- [ ] Filter displays count of products matching the criteria
-
-**Priority:** Must Have (P0)
-**Story Points:** 5
-
----
-
-#### Example 2: Guest Checkout
-
-**User Story:**
+**游客结账**
 ```
-As a first-time customer,
-I want to checkout without creating an account,
-So that I can complete my purchase quickly.
+作为首次购买的用户，
+我希望无需注册即可结账，
+从而快速完成购买。
 ```
+验收标准：提供“游客/登录”选项；可完成收货与支付；完成后收到确认邮件；结账页不超过 3 步等。
 
-**Acceptance Criteria:**
-- [ ] Given I have items in cart, when I click checkout, then I see options for "Guest Checkout" and "Sign In"
-- [ ] Given I choose guest checkout, when I enter shipping and payment info, then I can complete the order
-- [ ] Given I complete a guest checkout, when the order is placed, then I receive a confirmation email
-- [ ] After guest checkout, I see an option to create an account with my order information
-- [ ] Guest checkout flow takes no more than 3 screens
-
-**Priority:** Must Have (P0)
-**Story Points:** 8
-
----
-
-### SaaS / B2B Platform
-
-#### Example 3: Team Collaboration
-
-**User Story:**
+### SaaS / B2B
+**任务指派**
 ```
-As a project manager,
-I want to assign tasks to team members,
-So that everyone knows their responsibilities.
+作为项目经理，
+我想将任务指派给成员，
+让所有人清楚职责。
 ```
+验收标准：可选择成员并通知；列表能查看指派人；成员视图看到“我的任务”；支持多指派/修改。
 
-**Acceptance Criteria:**
-- [ ] Given I'm viewing a task, when I click "Assign", then I see a list of team members
-- [ ] Given I select a team member, when I confirm the assignment, then they receive a notification
-- [ ] Given a task is assigned, when I view the task list, then I can see who is assigned to each task
-- [ ] Given I'm a team member, when I'm assigned a task, then it appears in my "My Tasks" view
-- [ ] I can assign multiple people to a single task
-- [ ] I can change or remove task assignments
-
-**Priority:** Must Have (P0)
-**Story Points:** 5
-
----
-
-#### Example 4: Usage Analytics
-
-**User Story:**
+**使用分析**
 ```
-As a SaaS administrator,
-I want to view team usage analytics,
-So that I can optimize our subscription plan.
+作为管理员，
+我想查看团队使用分析，
+以优化订阅方案。
 ```
+验收标准：30 天指标；支持日期范围筛选；显示活跃、功能使用、API 调用、存储；可导出 CSV；实时≤5 分钟延迟。
 
-**Acceptance Criteria:**
-- [ ] Given I have admin permissions, when I navigate to analytics, then I see usage metrics for the last 30 days
-- [ ] Dashboard shows: active users, feature usage, API calls, and storage used
-- [ ] Given I select a date range, when I apply the filter, then metrics update accordingly
-- [ ] I can export analytics data as CSV
-- [ ] Metrics update in real-time (max 5-minute delay)
-
-**Priority:** Should Have (P1)
-**Story Points:** 8
-
----
-
-### Mobile App
-
-#### Example 5: Push Notifications
-
-**User Story:**
+### 移动应用
+**推送偏好**
 ```
-As a mobile app user,
-I want to customize which notifications I receive,
-So that I only see relevant updates.
+作为移动端用户，
+我想自定义接收哪些通知，
+从而只看到相关更新。
 ```
+验收标准：设置页可切换消息/提及/更新/促销；关闭后不再推送；多设备同步；默认开启消息/提及/更新，促销关闭。
 
-**Acceptance Criteria:**
-- [ ] Given I'm in settings, when I navigate to notifications, then I see toggle switches for each notification type
-- [ ] Notification types include: messages, mentions, updates, promotions
-- [ ] Given I disable a notification type, when that event occurs, then I don't receive a push notification
-- [ ] Settings sync across devices using the same account
-- [ ] Default settings are: messages ON, mentions ON, updates ON, promotions OFF
+**离线模式**
+```
+作为网络不稳定的用户，
+我想离线访问最近内容，
+从而无网也能继续使用。
+```
+验收标准：缓存最近 50 条；离线提示并展示缓存；离线更改后恢复自动同步；离线指示；7 天后自动清理。
 
-**Priority:** Must Have (P0)
-**Story Points:** 5
+### 认证与安全
+**双因子认证**
+```
+作为重视安全的用户，
+我想启用 2FA，
+从而保护账号免受未授权访问。
+```
+验收标准：设置中可选 SMS/认证器；需验证后才能启用；生成二维码与备份码；登录需二次验证；可关闭但需验证。
+
+**密码找回**
+```
+作为忘记密码的用户，
+我想通过邮箱重置，
+从而找回访问权限。
+```
+验收标准：5 分钟内收到重置邮件；链接 24 小时过期；新密码需满足规则；成功后自动登录；不存在的邮箱给出通用提示。
+
+### 内容与多媒体
+**视频上传**
+```
+作为创作者，
+我想上传视频并看到进度，
+从而知道何时完成。
+```
+验收标准：进度条；支持 MP4/MOV/AVI，≤2GB；离开页面仍继续；处理完成有通知；失败有具体错误且可重试。
+
+### 管理与配置
+**权限管理**
+```
+作为管理员，
+我想给用户分配角色，
+从而确保合适的访问级别。
+```
+验收标准：可设 Admin/Editor/Viewer/自定义；保存后权限即时生效；有审计日志；可修改/撤销。
 
 ---
 
-#### Example 6: Offline Mode
+## 验收标准模式
 
-**User Story:**
+### Given-When-Then
+结构清晰，适合复杂逻辑：
 ```
-As a mobile user with unreliable connectivity,
-I want to access my recently viewed content offline,
-So that I can continue using the app without internet.
+Given 初始条件
+When 执行动作
+Then 预期结果
 ```
 
-**Acceptance Criteria:**
-- [ ] Given I've viewed content while online, when I go offline, then I can still access the last 50 items viewed
-- [ ] Given I'm offline, when I try to access new content, then I see a "No connection" message with cached content
-- [ ] Given I'm offline and make changes, when I reconnect, then changes sync automatically
-- [ ] Offline indicator appears in the app when connectivity is lost
-- [ ] Cached content is automatically cleared after 7 days
+### Checklist 清单式
+适合简单场景：
+```
+- [ ] 要求1
+- [ ] 要求2
+- [ ] 边界/异常
+```
 
-**Priority:** Should Have (P1)
-**Story Points:** 13
+### 表格式
+适合多场景对照：
+| 条件 | 动作 | 结果 |
+|------|------|------|
+| 合法邮箱 | 点发送 | 成功提示 |
+| 非法邮箱 | 点发送 | 错误提示 |
+| 为空 | 点发送 | 必填提示 |
 
 ---
 
-### Authentication & Security
+## 常见错误
 
-#### Example 7: Two-Factor Authentication
-
-**User Story:**
+1) **过于技术化**
 ```
-As a security-conscious user,
-I want to enable two-factor authentication,
-So that my account is protected from unauthorized access.
+坏：我希望系统用 Redis 缓存...
+好：我希望页面 <2 秒加载，以便快速浏览。
+```
+故事关注用户价值，让技术方案留给工程。
+
+2) **太模糊**
+```
+坏：我希望应用很快。
+好：我希望搜索结果 <1 秒返回。
 ```
 
-**Acceptance Criteria:**
-- [ ] Given I'm in security settings, when I enable 2FA, then I can choose between SMS and authenticator app
-- [ ] Given I choose authenticator app, when I scan the QR code, then I must enter a verification code to activate
-- [ ] Given 2FA is enabled, when I log in, then I'm prompted for my second factor
-- [ ] I receive backup codes when activating 2FA
-- [ ] I can disable 2FA with my current password + 2FA code
+3) **缺少“为什么”**
+仅描述功能不说明价值，难以决策取舍。
 
-**Priority:** Must Have (P0)
-**Story Points:** 13
+4) **合并多动作**
+一个故事做多件事，应拆为多条。
+
+5) **无验收标准**
+缺少可验证条件，无法定义“完成”。
 
 ---
 
-#### Example 8: Password Reset
+## 故事拆分方法
 
-**User Story:**
-```
-As a user who forgot my password,
-I want to reset it via email,
-So that I can regain access to my account.
-```
+1) 按工作流步骤拆：搜索→选择→填写→支付→确认  
+2) 按用户角色拆：免费用户/付费用户/管理员  
+3) 按业务规则拆：百分比折扣/固定额度/包邮/过期/互斥  
+4) 按数据来源拆：CSV 导入/Google/Outlook/LinkedIn  
+5) 按 CRUD 拆：创建/查看/更新/删除  
+6) 按快乐路径 vs. 边界拆：先实现 MVP 快乐路径，再补格式、大小、异常、恢复等
 
-**Acceptance Criteria:**
-- [ ] Given I click "Forgot Password", when I enter my email, then I receive a reset link within 5 minutes
-- [ ] Reset link expires after 24 hours
-- [ ] Given I click the reset link, when I enter a new password, then it must meet password requirements (shown on screen)
-- [ ] After successful reset, I'm logged in automatically
-- [ ] If email doesn't exist in system, show generic message (don't reveal if account exists)
-
-**Priority:** Must Have (P0)
-**Story Points:** 5
+### 规模参考（Story Points）
+- 1-2：简单 UI/文案/小改动  
+- 3-5：带校验的表单、简单 API、开关  
+- 8：复杂表单、第三方集成、数据库变更  
+- 13+：过大，应拆分
 
 ---
 
-### Content & Media
+## 模板速用
 
-#### Example 9: Video Upload
-
-**User Story:**
+### 通用用户故事模板
 ```
-As a content creator,
-I want to upload videos with progress tracking,
-So that I know when my upload is complete.
-```
-
-**Acceptance Criteria:**
-- [ ] Given I select a video file, when I click upload, then I see a progress bar showing percentage complete
-- [ ] Supported formats: MP4, MOV, AVI (max 2GB)
-- [ ] Given upload is in progress, when I navigate away, then upload continues in background
-- [ ] Given upload completes, when processing is done, then I receive a notification
-- [ ] Given upload fails, when error occurs, then I see specific error message and can retry
-
-**Priority:** Must Have (P0)
-**Story Points:** 8
-
----
-
-### Admin & Configuration
-
-#### Example 10: User Permissions
-
-**User Story:**
-```
-As an administrator,
-I want to assign role-based permissions to users,
-So that team members have appropriate access levels.
-```
-
-**Acceptance Criteria:**
-- [ ] Given I'm viewing a user profile, when I click "Change Role", then I see available roles: Admin, Editor, Viewer
-- [ ] Given I assign a role, when I save, then user immediately gains/loses associated permissions
-- [ ] Admin: full access; Editor: create/edit content; Viewer: read-only
-- [ ] I can create custom roles with specific permission combinations
-- [ ] Audit log records all permission changes with timestamp and admin who made the change
-
-**Priority:** Must Have (P0)
-**Story Points:** 13
-
----
-
-## Acceptance Criteria Patterns
-
-### Given-When-Then Format
-
-Most structured format, excellent for complex logic:
-
-```
-Given [initial context/state],
-When [action/event],
-Then [expected outcome].
-```
-
-**Example:**
-```
-Given I'm a logged-in user with items in my cart,
-When I apply a 20% discount code,
-Then the cart total is reduced by 20% and displays the discount.
-```
-
-### Checklist Format
-
-Simpler, good for straightforward requirements:
-
-```
-- [ ] Requirement 1
-- [ ] Requirement 2
-- [ ] Edge case handling
-```
-
-### Table Format
-
-Great for multiple scenarios:
-
-| Condition | Action | Expected Result |
-|-----------|--------|----------------|
-| Valid email | Click "Send" | Confirmation message |
-| Invalid email | Click "Send" | Error message |
-| Empty field | Click "Send" | "Required field" error |
-
----
-
-## Common Mistakes to Avoid
-
-### ❌ Too Technical
-
-**Bad:**
-```
-As a user,
-I want the system to use Redis caching with 10-minute TTL,
-So that page loads are fast.
-```
-
-**Good:**
-```
-As a user,
-I want pages to load in under 2 seconds,
-So that I can browse efficiently.
-```
-
-**Why:** User stories focus on user value, not implementation. Let engineers choose the solution.
-
----
-
-### ❌ Too Vague
-
-**Bad:**
-```
-As a user,
-I want the app to be fast,
-So that I have a good experience.
-```
-
-**Good:**
-```
-As a user,
-I want search results to appear in under 1 second,
-So that I can quickly find what I need.
-```
-
-**Why:** "Fast" is subjective. Be specific and measurable.
-
----
-
-### ❌ Missing the "Why"
-
-**Bad:**
-```
-As a user,
-I want to upload profile pictures.
-```
-
-**Good:**
-```
-As a user,
-I want to upload a profile picture,
-So that other users can recognize me in the community.
-```
-
-**Why:** Understanding the "why" helps the team make better decisions.
-
----
-
-### ❌ Multiple Actions in One Story
-
-**Bad:**
-```
-As a user,
-I want to create an account, set up my profile, and invite team members,
-So that I can start using the platform.
-```
-
-**Good:** Split into three stories:
-```
-Story 1: As a user, I want to create an account...
-Story 2: As a user, I want to set up my profile...
-Story 3: As an account owner, I want to invite team members...
-```
-
-**Why:** Stories should be small and focused on one capability.
-
----
-
-### ❌ No Acceptance Criteria
-
-**Bad:**
-```
-As a user,
-I want to search for products,
-So that I can find what I need.
-```
-
-**Good:** Add specific criteria:
-```
-Acceptance Criteria:
-- [ ] Search works on product name and description
-- [ ] Results display in under 2 seconds
-- [ ] Displays "No results found" when no matches
-- [ ] Shows top 20 results with pagination
-```
-
-**Why:** Acceptance criteria define "done" and enable testing.
-
----
-
-## Story Splitting Techniques
-
-When a story is too large, use these techniques to split it:
-
-### 1. By Workflow Steps
-
-**Large Story:**
-```
-As a user, I want to book a flight online.
-```
-
-**Split Stories:**
-- Search for flights
-- Select flight
-- Enter passenger details
-- Choose seat
-- Make payment
-- Receive confirmation
-
----
-
-### 2. By User Persona
-
-**Large Story:**
-```
-As a user, I want to manage my subscriptions.
-```
-
-**Split Stories:**
-- As a free user, I want to view available plans
-- As a paid user, I want to upgrade my plan
-- As an admin, I want to manage team subscriptions
-
----
-
-### 3. By Business Rules
-
-**Large Story:**
-```
-As a user, I want to apply discount codes.
-```
-
-**Split Stories:**
-- Apply percentage discount (e.g., 20% off)
-- Apply fixed amount discount (e.g., $10 off)
-- Apply free shipping discount
-- Handle expired discount codes
-- Limit one discount per order
-
----
-
-### 4. By Data Variations
-
-**Large Story:**
-```
-As a user, I want to import contacts.
-```
-
-**Split Stories:**
-- Import from CSV file
-- Import from Google Contacts
-- Import from Microsoft Outlook
-- Import from LinkedIn
-
----
-
-### 5. By CRUD Operations
-
-**Large Story:**
-```
-As a user, I want to manage my projects.
-```
-
-**Split Stories:**
-- Create a new project
-- View project details
-- Update project settings
-- Delete a project
-
----
-
-### 6. By Happy Path / Edge Cases
-
-**MVP Story (Happy Path):**
-```
-As a user, I want to upload a profile photo (JPG, < 5MB).
-```
-
-**Follow-up Stories:**
-- Support additional formats (PNG, GIF)
-- Handle files larger than 5MB with error message
-- Auto-crop/resize images
-- Allow photo deletion
-
----
-
-## Story Sizing Guidelines
-
-### Story Points Reference
-
-**1-2 Points (Few hours):**
-- Simple UI change
-- Copy update
-- Minor configuration
-
-**3-5 Points (1-2 days):**
-- New form with validation
-- Simple API endpoint
-- Basic feature toggle
-
-**8 Points (3-5 days):**
-- Complex form with business logic
-- Integration with third-party service
-- New database schema with migration
-
-**13+ Points (1+ weeks):**
-- Too large! Split the story
-- Consider as an Epic
-
----
-
-## Templates for Common Scenarios
-
-### Registration/Sign-Up
-
-```
-As a new visitor,
-I want to create an account with my email,
-So that I can access personalized features.
-
-Acceptance Criteria:
-- [ ] Email and password required (password: min 8 chars, 1 number, 1 special char)
-- [ ] Email validation and duplicate check
-- [ ] Confirmation email sent upon registration
-- [ ] Automatically logged in after email confirmation
-- [ ] Option to sign up with Google/Apple (social auth)
-```
-
-### Data Export
-
-```
-As a user,
-I want to export my data as CSV,
-So that I can analyze it in Excel.
-
-Acceptance Criteria:
-- [ ] Export button in settings
-- [ ] Includes all user data (specify fields)
-- [ ] File downloads immediately (or email if > 10MB)
-- [ ] Filename format: "export_[username]_[date].csv"
-- [ ] Respects data privacy regulations (only user's own data)
-```
-
-### Error Handling
-
-```
-As a user,
-I want to see helpful error messages,
-So that I know how to fix issues.
-
-Acceptance Criteria:
-- [ ] Error messages are specific (not generic "Error occurred")
-- [ ] Suggest actionable next steps
-- [ ] Display in user's language
-- [ ] Don't expose technical details (stack traces)
-- [ ] Log errors for debugging (backend)
-```
-
----
-
-## Best Practices Summary
-
-1. **Write from user perspective**, not system perspective
-2. **Focus on value/benefit**, not just functionality
-3. **Keep stories small** (completable in one sprint)
-4. **Make acceptance criteria testable**
-5. **Use consistent format** across your team
-6. **Include edge cases** in acceptance criteria
-7. **Collaborate** with engineers and designers when writing
-8. **Refine regularly** based on new learnings
-9. **Link to mockups/designs** when relevant
-10. **Prioritize ruthlessly** (must/should/nice-to-have)
-
----
-
-## Additional Resources
-
-### User Story Template
-
-```
-Title: [Concise feature name]
-
-As a [specific user type],
-I want to [action/capability],
-So that [benefit/value].
-
-Acceptance Criteria:
-- [ ] [Testable criterion 1]
-- [ ] [Testable criterion 2]
-- [ ] [Edge case handling]
-
-Priority: [Must Have / Should Have / Nice to Have]
-Story Points: [1/2/3/5/8/13]
-Dependencies: [List if any]
-Design: [Link to mockups]
-Notes: [Additional context]
+标题：[简短名称]
+
+作为 [具体用户类型]，
+我希望 [动作/能力]，
+从而 [收益/价值]。
+
+验收标准：
+- [ ] 条件1/结果1
+- [ ] 条件2/结果2
+- [ ] 边界/异常
+
+优先级：Must/Should/Nice  
+故事点：1/2/3/5/8/13  
+依赖：如有列出  
+设计：链接  
+备注：补充上下文
 ```
 
 ### Epic vs Story vs Task
-
-**Epic:** Large body of work (multiple sprints)
-- Example: "User Authentication System"
-
-**Story:** Deliverable value (one sprint)
-- Example: "As a user, I want to reset my password..."
-
-**Task:** Implementation step (hours/days)
-- Example: "Create password reset API endpoint"
+- Epic：大体量，多迭代  
+- Story：单迭代可交付的价值单元  
+- Task：实现步骤（小时级/天级）
 
 ---
 
-## Conclusion
+## 总结
 
-Effective user stories:
-- Start with the user's perspective
-- Clearly articulate value
-- Include testable acceptance criteria
-- Are sized appropriately
-- Enable team collaboration
-
-Use these examples as templates, but adapt them to your product and users' specific needs!
+写好用户故事：
+- 站在用户视角，明确价值与“为什么”  
+- 保持小而可测，给出可验证的验收标准  
+- 用一致的格式，覆盖边界与异常  
+- 与设计/工程协作细化，按需拆分  
